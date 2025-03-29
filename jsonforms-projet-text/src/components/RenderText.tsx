@@ -9,12 +9,12 @@ interface ExtendedControlProps extends ControlProps {
   type?: string;
 }
 
-const RenderText: React.FC<ExtendedControlProps> = ({ data, handleChange, path, schema }) => {
+const RenderText: React.FC<ExtendedControlProps> = ({label, data, handleChange, path, schema }) => {
   return (
     <div className="form-group">
       <div>
-        <div>
-          <label>{schema.title}</label>
+      <div>
+          <label>{label}</label>
         </div>
         <div className="w-2/3">
           <div>{schema.description}</div>

@@ -16,35 +16,52 @@ const App: React.FC = () => {
     { country: 'Canada', percent: 10 },
   ]);
 
-  const handleEnumChange = (path: string, value: string[]) => {
+  // Fonction pour gérer la mise à jour de l'input texte
+  const handleTextChange = (path: string, value: string) => {
     if (path === '#/properties/user/properties/a08') {
-      setEnumValue(value);  
+      setTextValue(value);
     }
   };
 
+  //Fonction pour gérer la mise à jour du textarea
+  const handleTextAreaChange = (path: string, value: string) => {
+    if (path === '#/properties/user/properties/a09') {
+      setTextAreaValue(value);
+    }
+  };
+
+  // Fonction pour gérer la mise à jour des options enum
+  const handleEnumChange = (path: string, value: string[]) => {
+    if (path === '#/properties/item/properties/s01') {
+      setEnumValue(value);
+    }
+  };
+
+  // Fonction pour gérer la mise à jour du tableau des pays
   const handleArrayChange = (path: string, value: { country: string; percent: number }[]) => {
-    if (path === '#/properties/user/properties/a08') {
-      setCountriesValue(value);  
+    if (path === '#/properties/item/properties/i01') {
+      setCountriesValue(value);
     }
   };
 
   return (
     <div className="container">
+      <h2>{schema.properties.user.title}</h2>
+
       <div className="render-container">
         <RenderText
           label="Your Name"
-          type="text"
-          value={textValue}
-          handleChange={setTextValue}
+          value={textValue} 
+          handleChange={handleTextChange} 
           schema={schema.properties.user.properties.a08}
           uischema={{
             type: "Control",
             scope: "#/properties/user/properties/a08",
           }}
-          errors={''}
-          data={undefined}
+          errors=""
+          data={textValue}
           rootSchema={schema}
-          id={'user-name'}
+          id="user-name"
           enabled={true}
           visible={true}
           path="#/properties/user/properties/a08"
@@ -54,64 +71,62 @@ const App: React.FC = () => {
       <div className="render-container">
         <RenderTextArea
           label="Your Skills"
-          type="textarea"
-          value={textAreaValue}
-          handleChange={setTextAreaValue}
+          value={textAreaValue} 
+          handleChange={handleTextAreaChange} 
           schema={schema.properties.user.properties.a09}
           uischema={{
             type: "Control",
             scope: "#/properties/user/properties/a09",
           }}
-          errors={''}
-          data={undefined}
+          errors=""
+          data={textAreaValue}
           rootSchema={schema}
-          id={'user-name'}
+          id="user-skills"
           enabled={true}
           visible={true}
-          path="#/properties/user/properties/a08"
+          path="#/properties/user/properties/a09"
         />
       </div>
 
       <div className="render-container">
+        <h2>{schema.properties.item.title}</h2>
         <RenderEnum
           label="Contract Provider"
-          type="enum"
-          value={enumValue}
-          handleChange={handleEnumChange}  // Passer la fonction adaptée ici
+          value={enumValue} 
+          handleChange={handleEnumChange} 
           schema={schema.properties.item.properties.s01}
           uischema={{
             type: "Control",
             scope: "#/properties/item/properties/s01",
             options: { multi: true },
           }}
-          errors={''}
-          data={undefined}
+          errors=""
+          data={enumValue}
           rootSchema={schema}
-          id={'user-name'}
+          id="contract-provider"
           enabled={true}
           visible={true}
-          path="#/properties/user/properties/a08"
+          path="#/properties/item/properties/s01"
         />
       </div>
 
       <div className="render-container">
         <RenderArray
           label="Countries Worked"
-          type="countries"
-          value={countriesValue}
+          value={countriesValue} 
           handleChange={handleArrayChange}
           schema={schema.properties.item.properties.i01}
           uischema={{
             type: "Control",
             scope: "#/properties/item/properties/i01",
           }}
-          errors={''}
-          data={undefined}
+          errors=""
+          data={countriesValue}
           rootSchema={schema}
-          id={'user-name'}
+          id="countries-worked"
           enabled={true}
           visible={true}
-          path="#/properties/user/properties/a08"
+          path="#/properties/item/properties/i01"
         />
       </div>
     </div>
