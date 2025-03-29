@@ -19,27 +19,35 @@ const RenderArray: React.FC<ExtendedControlProps> = ({ data, handleChange, path,
   };
 
   return (
-    <div className="flex flex-col mb-4">
-      <label className="font-semibold mb-2">{schema.title}</label>
-      <div className="text-sm text-gray-600 mb-2">{schema.description}</div>
+    <div className="table-container">
+      {/* Titre et description */}
+      <div className="flex items-start mb-4">
+        <div className="w-1/3">
+          <label>{schema.title}</label>
+        </div>
+        <div className="w-2/3">
+          <div className="text-sm text-gray-500">{schema.description}</div>
+        </div>
+      </div>
+  
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto border-collapse">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-left">Country</th>
-              <th className="px-4 py-2 text-left">Percentage</th>
+              <th>Country</th>
+              <th >Percentage</th>
             </tr>
           </thead>
           <tbody>
             {countries.map((country: { country: string; percent: number }, index: number) => (
-              <tr key={index}>
-                <td className="px-4 py-2 border">{country.country}</td>
-                <td className="px-4 py-2 border">
+              <tr key={index} className="table-row">
+                <td className="country-cell">{country.country}</td>
+                <td className="percentage-cell">
                   <input
                     type="number"
                     value={country.percent}
                     onChange={(e) => handlePercentageChange(index, Number(e.target.value))}
-                    className="px-2 py-1 border rounded"
+                    className="input-field"
                   />
                 </td>
               </tr>
@@ -49,6 +57,7 @@ const RenderArray: React.FC<ExtendedControlProps> = ({ data, handleChange, path,
       </div>
     </div>
   );
+  
 };
 
 export default RenderArray;

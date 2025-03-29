@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { useState } from 'react';
 import RenderEnum from './components/RenderEnum';
 import RenderText from './components/RenderText';
@@ -20,94 +19,101 @@ const App: React.FC = () => {
   const handleEnumChange = (path: string, value: string[]) => {
     if (path === '#/properties/user/properties/a08') {
       setEnumValue(value);  
-    } else {
     }
   };
-  
+
   const handleArrayChange = (path: string, value: { country: string; percent: number }[]) => {
     if (path === '#/properties/user/properties/a08') {
       setCountriesValue(value);  
-    } else {
     }
   };
 
-
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      <RenderText
-        label="Your Name"
-        type="text"
-        value={textValue}
-        handleChange={setTextValue}
-        schema={schema.properties.user.properties.a08}
-        uischema={{
-          type: "Control",
-          scope: "#/properties/user/properties/a08",
-        }}
-        errors={''}
-        data={undefined}
-        rootSchema={schema}
-        id={'user-name'}
-        enabled={true}
-        visible={true}
-        path="#/properties/user/properties/a08"
-      />
-      <RenderTextArea
-        label="Your Skills"
-        type="textarea"
-        value={textAreaValue}
-        handleChange={setTextAreaValue}
-        schema={schema.properties.user.properties.a09}
-        uischema={{
-          type: "Control",
-          scope: "#/properties/user/properties/a09",
-        }}
-        errors={''}
-        data={undefined}
-        rootSchema={schema}
-        id={'user-name'}
-        enabled={true}
-        visible={true}
-        path="#/properties/user/properties/a08"
-      />
-      <RenderEnum
-        label="Contract Provider"
-        type="enum"
-        value={enumValue}
-        handleChange={handleEnumChange}  // Passer la fonction adaptée ici
-        schema={schema.properties.item.properties.s01}
-        uischema={{
-          type: "Control",
-          scope: "#/properties/item/properties/s01",
-          options: { multi: true },
-        }}
-        errors={''}
-        data={undefined}
-        rootSchema={schema}
-        id={'user-name'}
-        enabled={true}
-        visible={true}
-        path="#/properties/user/properties/a08"
-      />
-      <RenderArray
-        label="Countries Worked"
-        type="countries"
-        value={countriesValue}
-        handleChange={handleArrayChange}
-        schema={schema.properties.item.properties.i01}
-        uischema={{
-          type: "Control",
-          scope: "#/properties/item/properties/i01",
-        }}
-        errors={''}
-        data={undefined}
-        rootSchema={schema}
-        id={'user-name'}
-        enabled={true}
-        visible={true}
-        path="#/properties/user/properties/a08"
-      />
+    <div className="container">
+      <div className="render-container">
+        <RenderText
+          label="Your Name"
+          type="text"
+          value={textValue}
+          handleChange={setTextValue}
+          schema={schema.properties.user.properties.a08}
+          uischema={{
+            type: "Control",
+            scope: "#/properties/user/properties/a08",
+          }}
+          errors={''}
+          data={undefined}
+          rootSchema={schema}
+          id={'user-name'}
+          enabled={true}
+          visible={true}
+          path="#/properties/user/properties/a08"
+        />
+      </div>
 
+      <div className="render-container">
+        <RenderTextArea
+          label="Your Skills"
+          type="textarea"
+          value={textAreaValue}
+          handleChange={setTextAreaValue}
+          schema={schema.properties.user.properties.a09}
+          uischema={{
+            type: "Control",
+            scope: "#/properties/user/properties/a09",
+          }}
+          errors={''}
+          data={undefined}
+          rootSchema={schema}
+          id={'user-name'}
+          enabled={true}
+          visible={true}
+          path="#/properties/user/properties/a08"
+        />
+      </div>
+
+      <div className="render-container">
+        <RenderEnum
+          label="Contract Provider"
+          type="enum"
+          value={enumValue}
+          handleChange={handleEnumChange}  // Passer la fonction adaptée ici
+          schema={schema.properties.item.properties.s01}
+          uischema={{
+            type: "Control",
+            scope: "#/properties/item/properties/s01",
+            options: { multi: true },
+          }}
+          errors={''}
+          data={undefined}
+          rootSchema={schema}
+          id={'user-name'}
+          enabled={true}
+          visible={true}
+          path="#/properties/user/properties/a08"
+        />
+      </div>
+
+      <div className="render-container">
+        <RenderArray
+          label="Countries Worked"
+          type="countries"
+          value={countriesValue}
+          handleChange={handleArrayChange}
+          schema={schema.properties.item.properties.i01}
+          uischema={{
+            type: "Control",
+            scope: "#/properties/item/properties/i01",
+          }}
+          errors={''}
+          data={undefined}
+          rootSchema={schema}
+          id={'user-name'}
+          enabled={true}
+          visible={true}
+          path="#/properties/user/properties/a08"
+        />
+      </div>
     </div>
   );
 };

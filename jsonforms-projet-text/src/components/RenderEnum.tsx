@@ -13,7 +13,6 @@ const RenderEnum: React.FC<ExtendedControlProps> = ({ data, handleChange, path, 
   // Valeur par défaut si data est undefined
   const selectedValues = data || [];
 
-  // Vérification que le schéma contient bien une énumération dans `items`
   const enumOptions =
     schema?.items &&
     !Array.isArray(schema.items) &&
@@ -27,16 +26,24 @@ const RenderEnum: React.FC<ExtendedControlProps> = ({ data, handleChange, path, 
   }
 
   return (
-    <div className="flex flex-col mb-4">
-      <label className="font-semibold mb-2">{schema.title}</label>
-      <div className="text-sm text-gray-600 mb-2">{schema.description}</div>
+    <div className="form-group">
+      {/* Title and Description */}
+      <div className="flex items-start mb-4">
+        <div className="w-1/3">
+          <label>{schema.title}</label>
+        </div>
+        <div className="w-2/3">
+          <div>{schema.description}</div>
+        </div>
+      </div>
+      
       <select
         multiple
         value={selectedValues}
         onChange={(e) =>
           handleChange(path, Array.from(e.target.selectedOptions, (option) => option.value))
         }
-        className="p-2 border rounded"
+      
       >
         {enumOptions.map((option: string) => (
           <option key={option} value={option}>
