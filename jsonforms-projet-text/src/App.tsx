@@ -11,9 +11,9 @@ const App: React.FC = () => {
   const [enumValue, setEnumValue] = useState<string[]>([]);
   const [textAreaValue, setTextAreaValue] = useState('');
   const [countriesValue, setCountriesValue] = useState([
-    { country: 'USA', percent: 70 },
-    { country: 'France', percent: 20 },
-    { country: 'Canada', percent: 10 },
+    { country: '', percent: 70 },
+    { country: '', percent: 20 },
+    { country: '', percent: 10 },
   ]);
 
   // Fonction pour gérer la mise à jour de l'input texte

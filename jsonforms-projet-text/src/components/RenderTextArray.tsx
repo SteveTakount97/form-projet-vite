@@ -11,7 +11,7 @@ interface ExtendedControlProps extends ControlProps {
 
 const RenderTextArea: React.FC<ExtendedControlProps> = ({ data, handleChange, path, schema }) => {
   return (
-    <div className="form-group">
+    <div>
       {/* Title and Description */}
       <div>
         <div>
@@ -24,6 +24,7 @@ const RenderTextArea: React.FC<ExtendedControlProps> = ({ data, handleChange, pa
       <textarea
         value={data || ''}
         onChange={(e) => handleChange(path, e.target.value)}
+        className='description'
       />
     </div>
   );
